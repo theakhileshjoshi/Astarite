@@ -1,0 +1,80 @@
+# Visual Studio files
+.vscode/
+*.suo
+*.user
+*.userprefs
+*.sln.docstates
+*.bak
+
+# Visual Studio Code folders
+.vscode/
+.vs/
+
+# Compiled files
+bin/
+obj/
+Debug/
+Release/
+x64/
+x86/
+
+# Package Management
+packages/
+
+# User-specific files
+*.suo
+*.user
+*.userprefs
+*.sln.docstates
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# VS Code folder
+.vscode/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+
+# Compiled files
+Debug/
+Release/
+x64/
+x86/
+*.sln.docstates
+*.bak
+
+# Compiled object files
+*.o
+*.obj
+
+# IDE-specific files
+.vscode/
+*.user
+*.suo
+*.userprefs
+
+# Compiled libraries
+*.lib
+*.a
+
+# Compiled executable
+*.exe
+
+# Visual Studio generated files
+*.VC.db
+*.VC.VC.opendb
