@@ -1,1 +1,3 @@
-﻿
+﻿  pch.cpp
+  Engine.cpp
+  Engine.vcxproj -> D:\visual-studio-workspace\GameEngine\Astarite\x64\Debug\Engine.lib

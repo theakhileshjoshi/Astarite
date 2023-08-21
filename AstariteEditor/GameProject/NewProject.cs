@@ -2,6 +2,7 @@
 using AstariteEditor.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -19,57 +20,72 @@ namespace AstariteEditor.GameProject
         [DataMember]
         public List<string>? Folders { get; set; }
 
+        public byte[] Icon { get; set; }
+
+        public byte[] ScreenShot { get; set; }
+
+        public string IconFilePath { get; set; }
+
+        public string ScreenShotFilePath { get; set; }
+
+        public string ProjectFilePath { get; set; }
+
+
     }
 
     class NewProject : ViewModelBase
     {
         //TODO: Get the path from the installation location
         private readonly string _templatePath = @"..\..\AstariteEditor\ProjectTemplates";
-        private string _name = StringResource.DefaultProjectName;
-        public string Name
+        private string _projectName = StringResource.DefaultProjectName;
+        public string ProjectName
         {
-            get => _name;
+            get => _projectName;
             set
             {
-                if (_name != value)
+                if (_projectName != value)
                 {
-                    _name = value;
-                    OnPropertyChanged(nameof(Name));
+                    _projectName = value;
+                    OnPropertyChanged(nameof(ProjectName));
                 }
             }
         }
 
 
-        private string _path = $@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\AstariteProject\";
-        public string Path
+        private string _projectPath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\AstariteProject\";
+        public string ProjectPath
         {
-            get => _path;
+            get => _projectPath;
             set
             {
-                if (_path != value)
+                if (_projectPath != value)
                 {
-                    _path = value;
-                    OnPropertyChanged(nameof(Path));
+                    _projectPath = value;
+                    OnPropertyChanged(nameof(ProjectPath));
                 }
             }
         }
+
+        private ObservableCollection<ProjectTemplate> _projectTemplates = new ObservableCollection<ProjectTemplate>();
+        public ReadOnlyObservableCollection<ProjectTemplate> ProjectTemplates { get; }
 
         public NewProject()
         {
+            ProjectTemplates = new ReadOnlyObservableCollection<ProjectTemplate>(_projectTemplates);
             try
             {
                 var templatesFiles = Directory.GetFiles(_templatePath, "template.xml", SearchOption.AllDirectories);
                 Debug.Assert(templatesFiles.Any());
                 foreach (var templatesFile in templatesFiles)
                 {
-                    var template = new ProjectTemplate()
-                    {
-                        ProjectType = "Empty Project",
-                        ProjectFile = "project.astarite",
-                        Folders = new List<string> { ".Astarite", "Content", "GameCode" }
-                    };
+                    var template = Serializer.FromFile<ProjectTemplate>(templatesFile);
+                    template.IconFilePath = System.IO.Path.GetFullPath(Path.Combine(Path.GetDirectoryName(templatesFile), "icon.png"));
+                    template.Icon = File.ReadAllBytes(template.IconFilePath);
+                    template.ScreenShotFilePath = System.IO.Path.GetFullPath(Path.Combine(Path.GetDirectoryName(templatesFile), "screenshot.png"));
+                    template.ScreenShot = File.ReadAllBytes(template.ScreenShotFilePath);
+                    template.ProjectFilePath = System.IO.Path.GetFullPath(Path.Combine(Path.GetDirectoryName(templatesFile), template.ProjectFile));
 
-                    Serializer.ToFile(template, templatesFile);
+                    _projectTemplates.Add(template);
                 }
             }
             catch (Exception ex)

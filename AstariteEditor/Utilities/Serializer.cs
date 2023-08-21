@@ -22,5 +22,22 @@ namespace AstariteEditor.Utilities
                 //TODO: Proper Logging
             }
         }
+
+        internal static T FromFile<T>(string path)
+        {
+            try
+            {
+                using var fs = new FileStream(path, FileMode.Open);
+                var serializer = new DataContractSerializer(typeof(T));
+                T instance = (T)serializer.ReadObject(fs);
+                return instance;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                //TODO: Proper Logging
+                return default(T);
+            }
+        }
     }
 }
