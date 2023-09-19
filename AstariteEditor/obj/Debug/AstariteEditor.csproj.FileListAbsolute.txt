@@ -28,3 +28,13 @@ D:\visual-studio-workspace\GameEngine\Astarite\AstariteEditor\obj\Debug\refint\A
 D:\visual-studio-workspace\GameEngine\Astarite\AstariteEditor\obj\Debug\AstariteEditor.pdb
 D:\visual-studio-workspace\GameEngine\Astarite\AstariteEditor\obj\Debug\AstariteEditor.genruntimeconfig.cache
 D:\visual-studio-workspace\GameEngine\Astarite\AstariteEditor\obj\Debug\ref\AstariteEditor.dll
+D:\visual-studio-workspace\GameEngine\Astarite\AstariteEditor\x64\Debug\AstariteEditor.exe
+D:\visual-studio-workspace\GameEngine\Astarite\AstariteEditor\x64\Debug\AstariteEditor.deps.json
+D:\visual-studio-workspace\GameEngine\Astarite\AstariteEditor\x64\Debug\AstariteEditor.runtimeconfig.json
+D:\visual-studio-workspace\GameEngine\Astarite\AstariteEditor\x64\Debug\AstariteEditor.dll
+D:\visual-studio-workspace\GameEngine\Astarite\AstariteEditor\x64\Debug\AstariteEditor.pdb
+D:\x64\Debug\AstariteEditor.exe
+D:\x64\Debug\AstariteEditor.deps.json
+D:\x64\Debug\AstariteEditor.runtimeconfig.json
+D:\x64\Debug\AstariteEditor.dll
+D:\x64\Debug\AstariteEditor.pdb
