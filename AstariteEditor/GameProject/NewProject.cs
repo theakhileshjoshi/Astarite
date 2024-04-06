@@ -66,8 +66,33 @@ namespace AstariteEditor.GameProject
             }
         }
 
+        private bool _isValid;
+
+        public bool isValid
+        {
+            get => _isValid;
+            set
+            {
+                if (_isValid != value)
+                {
+                    _isValid = value;
+                    OnPropertyChanged(nameof(_isValid));
+                }
+            }
+        }
+
         private ObservableCollection<ProjectTemplate> _projectTemplates = new ObservableCollection<ProjectTemplate>();
         public ReadOnlyObservableCollection<ProjectTemplate> ProjectTemplates { get; }
+
+        public bool ValidateProjectPath()
+        {
+            var path = ProjectPath;
+            if (!Path.EndsInDirectorySeparator(path))
+            {
+                path += $@"{ProjectName}\";
+            }
+            return false;
+        }
 
         public NewProject()
         {
